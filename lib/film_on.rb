@@ -1,5 +1,6 @@
 require "film_on/version"
+require "film_on/base"
 
 module FilmOn
-  # Your code goes here...
+
 end

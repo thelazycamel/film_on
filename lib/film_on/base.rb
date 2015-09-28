@@ -1,4 +1,5 @@
 require "JSON"
+require "HTTParty"
 require_relative "services"
 
 module FilmOn
@@ -19,7 +20,7 @@ module FilmOn
 
     def init_request
       response = call("init")
-      @session_key = response["session"]
+      @session_key = response["session_key"]
       self
     end
 
