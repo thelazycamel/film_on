@@ -3,7 +3,7 @@ module FilmOn
   module Services
 
     def channel(id)
-
+      get("channel/#{id}")
     end
 
     def channels
@@ -11,7 +11,7 @@ module FilmOn
     end
 
     def groups
-
+      get("groups")
     end
 
   end
