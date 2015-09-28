@@ -19,19 +19,34 @@ module FilmOn
     end
 
     def init_request
-      response = call("init")
+      response = get("init")
       @session_key = response["session_key"]
       self
     end
 
     private
 
-    def call(service, protocol="http://")
-      response = HTTParty.get("#{protocol}#{URI}#{service}")
+    def post(service, query={}, protocol="http://")
+      query["format"] = "json"
+      query["session_id"] = @session_key unless service == "init"
+      full_service_url = "#{protocol}#{URI}#{service}"
+      response = HTTParty.post(full_service_url, {body: query, headers: {'Content-Type' => 'application/json'}})
       if response && response.code == 200
         return JSON.parse(response.body)
       else
-        #TODO raise error and write to logs
+        response.response
+      end
+    end
+
+    def get(service, query={}, protocol="http://")
+      query["format"] = "json"
+      query["session_id"] = @session_key unless service == "init"
+      full_service_url = "#{protocol}#{URI}#{service}?#{query.map{|k,v| "#{k}=#{v}"}.join("&")}"
+      response = HTTParty.get(full_service_url)
+      if response && response.code == 200
+        return JSON.parse(response.body)
+      else
+        response.response
       end
     end
 

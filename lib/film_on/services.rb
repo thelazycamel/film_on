@@ -2,12 +2,12 @@ module FilmOn
 
   module Services
 
-    def get_channel(id)
+    def channel(id)
 
     end
 
     def channels
-
+      get("channels")
     end
 
     def groups
