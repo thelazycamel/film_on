@@ -23,7 +23,7 @@ describe FilmOn::Base do
   context "services" do
 
     it "should call the channels list" do
-      stub_request(:get, "http://www.filmon.com/tv/api/channels?format=json&session_id=some_random_session_key").with(:headers => {'Accept'=>'*/*'}).
+      stub_request(:get, "http://www.filmon.com/tv/api/channels?format=json&session_key=some_random_session_key").with(:headers => {'Accept'=>'*/*'}).
          to_return(:status => 200, :body => "[{\"id\":11,\"title\": \"ITV 1\"}]", :headers => {})
       expect(film_on.channels).to be_instance_of(Array)
     end
