@@ -2,6 +2,9 @@
 
 A Ruby wrapper for the FilmOn API: http://www.filmon.com/page/api
 
+This is currently at version 0.0.1 and only handles channels, channel
+and groups methods
+
 
 ## Installation
 
@@ -21,7 +24,18 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Refer to FilmOn Api (http://www.filmon.com/page/api):
+
+Obtain your app_key and app_secret from FilmOn 
+
+app_key = "foo"
+app_secret = "bar"
+
+film_on = FilmOn::Base.new(app_key, app_secret)
+
+film_on.channels => returns list of all channels as ruby objects
+flim_on.groups => returns list of all groups as ruby objects
+film_on.channel(id) => returns info for given channel as a ruby object
 
 ## Development
 
