@@ -44,7 +44,6 @@ module FilmOn
       full_service_url = "#{protocol}#{URI}#{service}?#{query.map{|k,v| "#{k}=#{v}"}.join("&")}"
       response = HTTParty.get(full_service_url)
       if response && response.code == 200
-        File.write("filmon.json", response.body)
         return JSON.parse(response.body)
       else
         response.response
