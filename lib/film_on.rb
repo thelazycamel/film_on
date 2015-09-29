@@ -1,5 +1,4 @@
-require "film_on/version"
-require "film_on/base"
+Dir[File.dirname(__FILE__) + "/film_on/**/*.rb"].each {|file| require file }
 
 module FilmOn
 

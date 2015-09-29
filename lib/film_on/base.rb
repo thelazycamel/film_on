@@ -8,13 +8,14 @@ module FilmOn
 
     include Services
 
-    attr_reader :app_key, :app_secret, :session_key
     URI = "www.filmon.com/tv/api/"
 
+    attr_reader :app_key, :app_secret, :session_key
 
     def initialize(app_key, app_secret)
       @app_key = app_key
       @app_secret = app_secret
+      @channel = {}
       init_request
     end
 
@@ -44,6 +45,7 @@ module FilmOn
       full_service_url = "#{protocol}#{URI}#{service}?#{query.map{|k,v| "#{k}=#{v}"}.join("&")}"
       response = HTTParty.get(full_service_url)
       if response && response.code == 200
+        File.write("filmon.json", response.body)
         return JSON.parse(response.body)
       else
         response.response
