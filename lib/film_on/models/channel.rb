@@ -10,6 +10,9 @@ module FilmOn
     attr_reader :hash, :id, :title, :alias, :logo, :big_logo, :content_rating, :adult_content
     attr_reader :group, :group_id, :is_free, :is_free_sd_mode, :type, :has_tvguide, :seekable
     attr_reader :serverside_record, :extra_big_logo, :upnp_enabled, :is_favorite
+    #extended
+    attr_reader :is_adult, :is_interactive, :is_vod, :is_vox, :chat_keyword, :recordable, :programmes
+    attr_reader :preload_message, :preload_timeout, :is_local, :preload_intro, :images, :schedule, :tvguide
 
     def initialize(hash)
       @hash = hash
@@ -31,6 +34,29 @@ module FilmOn
       @extra_big_logo = hash["extra_big_logo"]
       @upnp_enabled = hash["upnp_enabled"]
       @is_favorite = hash["is_favorite"]
+      #extended
+      @is_adult = hash["is_adult"]
+      @is_interactive = hash["is_interactive"]
+      @is_vod = hash["is_vod"]
+      @is_vox = hash["is_vox"]
+      @chat_keyword = hash["chat_keyword"]
+      @recordable = hash["recordable"]
+      @preload_message = hash["preload_message"]
+      @preload_timeout = hash["preload_timeout"]
+      @is_local = hash["is_local"]
+      @preload_intro = hash["preload_intro"]
+      @images = hash["images"]
+      @schedule = hash["schedule"]
+      @tvguide = get_tvguide(hash["tvguide"])
+    end
+
+    def get_tvguide(guide)
+      return [] unless guide
+      guide.map{|gu| FilmOn::Programme.new(gu) }
+    end
+
+    def programmes
+      @tvguide
     end
 
   end

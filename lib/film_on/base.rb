@@ -1,4 +1,3 @@
-require "JSON"
 require "HTTParty"
 require_relative "services"
 
