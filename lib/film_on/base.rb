@@ -1,5 +1,4 @@
 require "HTTParty"
-require_relative "services"
 
 module FilmOn
 
