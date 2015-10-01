@@ -39,11 +39,16 @@ describe FilmOn::Base do
       end
 
       it "should not call the api on a second request" do
-        expect(film_on).to receive(:get).with("channels") {[]}
+        expect(film_on).to receive(:get).with("channels") {"{}"}
         film_on.channels
         expect(film_on).to_not receive(:get)
         film_on.channels
       end
+
+      it "should return channels list as json when requested" do
+        expect(film_on.channels(json: true)).to eq(channels_response_json)
+      end
+
 
     end
 
@@ -59,7 +64,7 @@ describe FilmOn::Base do
       end
 
       it "should not call the api on a second request" do
-        expect(film_on).to receive(:get).with("channel/11") {{}}
+        expect(film_on).to receive(:get).with("channel/11") {"{}"}
         film_on.channel(11)
         expect(film_on).to_not receive(:get)
         film_on.channel(11)
@@ -83,7 +88,7 @@ describe FilmOn::Base do
       end
 
       it "should not call the api on a second request" do
-        expect(film_on).to receive(:get).with("groups") {[]}
+        expect(film_on).to receive(:get).with("groups") {"[]"}
         film_on.groups
         expect(film_on).to_not receive(:get)
         film_on.groups

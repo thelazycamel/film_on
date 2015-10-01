@@ -19,7 +19,8 @@ module FilmOn
 
     def init_request
       response = get("init")
-      @session_key = response["session_key"]
+      init_hash = JSON.parse(response)
+      @session_key = init_hash["session_key"]
       self
     end
 
@@ -31,7 +32,7 @@ module FilmOn
       full_service_url = "#{protocol}#{URI}#{service}"
       response = HTTParty.post(full_service_url, {body: query, headers: {'Content-Type' => 'application/json'}})
       if response && response.code == 200
-        return JSON.parse(response.body)
+        return response.body
       else
         response.response
       end
@@ -43,7 +44,7 @@ module FilmOn
       full_service_url = "#{protocol}#{URI}#{service}?#{query.map{|k,v| "#{k}=#{v}"}.join("&")}"
       response = HTTParty.get(full_service_url)
       if response && response.code == 200
-        return JSON.parse(response.body)
+        return response.body
       else
         response.response
       end
