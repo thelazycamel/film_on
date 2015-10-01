@@ -9,6 +9,10 @@ module FilmOn
         @channel[id] = json
         return json
       end
+      convert_channel(id, json)
+    end
+
+    def convert_channel(id, json)
       hash = JSON.parse(json)
       @channel[id] = FilmOn::Channel.new(hash)
     end
@@ -20,6 +24,10 @@ module FilmOn
         @channels = json
         return json
       end
+      convert_channels(json)
+    end
+
+    def convert_channels(json)
       hash = JSON.parse(json)
       @channels = hash.map{|ch| FilmOn::Channel.new(ch)}
     end
@@ -31,6 +39,10 @@ module FilmOn
         @groups = json
         return json
       end
+      convert_groups(json)
+    end
+
+    def convert_groups(json)
       hash = JSON.parse(json)
       @groups = hash.map{|gr| FilmOn::Group.new(gr)}
     end
