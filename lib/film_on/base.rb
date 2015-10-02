@@ -5,6 +5,8 @@ module FilmOn
   class Base
 
     include Services
+    include ChannelHelper
+    include GroupHelper
 
     URI = "www.filmon.com/tv/api/"
 

@@ -94,6 +94,11 @@ describe FilmOn::Base do
         film_on.groups
       end
 
+      it "#find_group should return a group, given an id" do
+        group = film_on.find_group("5")
+        expect(group.title).to eq("UK LIVE TV")
+      end
+
     end
 
   end
