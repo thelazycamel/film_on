@@ -12,7 +12,7 @@ module FilmOn
     attr_reader :serverside_record, :extra_big_logo, :upnp_enabled, :is_favorite
     #extended
     attr_reader :is_adult, :is_interactive, :is_vod, :is_vox, :chat_keyword, :recordable, :programmes
-    attr_reader :preload_message, :preload_timeout, :is_local, :preload_intro, :images, :schedule, :tvguide
+    attr_reader :preload_message, :preload_timeout, :is_local, :preload_intro, :images, :schedule, :now_playing, :next_playing, :tvguide
 
     def initialize(hash)
       @hash = hash
@@ -47,6 +47,8 @@ module FilmOn
       @preload_intro = hash["preload_intro"]
       @images = hash["images"]
       @schedule = hash["schedule"]
+      @now_playing = hash["now_playing"] ? FilmOn::Programme.new(hash["now_playing"]) : nil
+      @next_playing = hash["next_playing"] ? FilmOn::Programme.new(hash["next_playing"]) : nil
       @tvguide = get_tvguide(hash["tvguide"])
     end
 

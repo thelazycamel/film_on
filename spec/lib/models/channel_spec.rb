@@ -37,7 +37,6 @@ describe FilmOn::Channel do
     it "#extra_big_logo" do; expect(channel.extra_big_logo).to eq("http://static.filmon.com/assets/channels/364/extra_big_logo.png"); end
     it "#upnp_enabled" do; expect(channel.upnp_enabled).to eq(true); end
     it "#is_favorite" do; expect(channel.is_favorite).to eq(false); end
-
   end
 
   context "Verbose Channel information from calling channel/#id directly" do
@@ -50,11 +49,11 @@ describe FilmOn::Channel do
         to_return(:status => 200, :body => channel_response_json, :headers => {})
     end
 
-    it "#id" do; expect(channel.id).to eq(11); end
-    it "#title" do; expect(channel.title).to eq("ITV"); end
-    it "#alias" do; expect(channel.alias).to eq("itv1"); end
-    it "#logo" do; expect(channel.logo).to eq("http://static.filmon.com/assets/channels/11/logo.png?v2"); end
-    it "#big_logo" do; expect(channel.big_logo).to eq("http://static.filmon.com/assets/channels/11/big_logo.png"); end
+    it "#id" do; expect(channel.id).to eq(14); end
+    it "#title" do; expect(channel.title).to eq("BBC One"); end
+    it "#alias" do; expect(channel.alias).to eq("bbc-one"); end
+    it "#logo" do; expect(channel.logo).to eq("http://static.filmon.com/assets/channels/14/logo.png?v2"); end
+    it "#big_logo" do; expect(channel.big_logo).to eq("http://static.filmon.com/assets/channels/14/big_logo.png"); end
     it "#content_rating" do; expect(channel.content_rating).to eq("-1"); end
     it "#adult_content" do; expect(channel.adult_content).to eq(false); end
     it "#group" do; expect(channel.group).to eq("UK LIVE TV"); end
@@ -65,23 +64,25 @@ describe FilmOn::Channel do
     it "#has_tvguide" do; expect(channel.has_tvguide).to eq(true); end
     it "#seekable" do; expect(channel.seekable).to eq(false); end
     it "#serverside_record" do; expect(channel.serverside_record).to eq(false); end
-    it "#extra_big_logo" do; expect(channel.extra_big_logo).to eq("http://static.filmon.com/assets/channels/11/extra_big_logo.png"); end
+    it "#extra_big_logo" do; expect(channel.extra_big_logo).to eq("http://static.filmon.com/assets/channels/14/extra_big_logo.png"); end
     it "#upnp_enabled" do; expect(channel.upnp_enabled).to eq(true); end
     it "#is_favorite" do; expect(channel.is_favorite).to eq(false); end
     it "#is_adult" do; expect(channel.is_adult).to eq(false); end
     it "#is_interactive" do; expect(channel.is_interactive).to eq(false); end
     it "#is_vod" do; expect(channel.is_vod).to eq(false); end
     it "#is_vox" do; expect(channel.is_vox).to eq(false); end
-    it "#chat_keyword" do; expect(channel.chat_keyword).to eq("filmon_itv1"); end
+    it "#chat_keyword" do; expect(channel.chat_keyword).to eq("filmon_bbc_one"); end
     it "#recordable" do; expect(channel.recordable).to eq(true); end
     it "#preload_message" do; expect(channel.preload_message).to eq("Tuning your antenna..."); end
     it "#preload_timeout" do; expect(channel.preload_timeout).to eq(3); end
     it "#is_local" do; expect(channel.is_local).to eq(true); end
     it "#preload_intro" do; expect(channel.preload_intro).to eq({"name"=>"mp4:promo_short.mp4", "url"=>"rtmp://vod-static.la3.edge.filmon.com/static/"}); end
-    it "#images" do; expect(channel.images).to eq({"logos"=>[{"size"=>"56x28", "url"=>"http://static.filmon.com/assets/channels/11/logo.png?v2"}, {"size"=>"106x106", "url"=>"http://static.filmon.com/assets/channels/11/big_logo.png"}, {"size"=>"300x300", "url"=>"http://static.filmon.com/assets/channels/11/extra_big_logo.png"}]}); end
+    it "#images" do; expect(channel.images).to eq({"logos" => [{"size"=>"56x28", "url"=>"http://static.filmon.com/assets/channels/14/logo.png?v2"}, {"size"=>"106x106", "url"=>"http://static.filmon.com/assets/channels/14/big_logo.png"}, {"size"=>"300x300", "url"=>"http://static.filmon.com/assets/channels/14/extra_big_logo.png"}]}); end
     it "#schedule" do; expect(channel.schedule).to eq(true); end
-    it "#tvguide" do; expect(channel.tvguide.size).to eq(196); end
-    it "#programmes" do; expect(channel.programmes.size).to eq(196); end
+    it "#now_playing" do; expect(channel.now_playing).to be_instance_of(FilmOn::Programme); end
+    it "#next_playing" do; expect(channel.next_playing).to be_instance_of(FilmOn::Programme); end
+    it "#tvguide" do; expect(channel.tvguide.size).to eq(202); end
+    it "#programmes" do; expect(channel.programmes.size).to eq(202); end
 
   end
 
