@@ -8,7 +8,7 @@ module FilmOn
       if opts[:json]
         return json
       end
-      @channel[id] = convert_channel(id, json)
+      @channel[id] = convert_channel(json)
     end
 
     def channels(opts={})

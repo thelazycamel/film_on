@@ -2,7 +2,7 @@ module FilmOn
 
   module ChannelHelper
 
-      def convert_channel(id,json)
+      def convert_channel(json)
         hash = JSON.parse(json)
         FilmOn::Channel.new(hash)
       end
