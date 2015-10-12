@@ -3,7 +3,7 @@ module FilmOn
   module Services
 
     def channel(id, opts={})
-      return @channel[id] if @channel[id]
+      return @channel[id] if @channel[id] && !opts[:json]
       json = get("channel/#{id}")
       if opts[:json]
         return json
@@ -12,7 +12,7 @@ module FilmOn
     end
 
     def channels(opts={})
-      return @channels if @channels
+      return @channels if @channels && !opts[:json]
       json = get("channels")
       if opts[:json]
         return json
@@ -21,7 +21,7 @@ module FilmOn
     end
 
     def groups(opts={})
-      return @groups if @groups
+      return @groups if @groups && !opts[:json]
       json = get("groups")
       if opts[:json]
         return json
