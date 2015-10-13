@@ -12,6 +12,7 @@ module FilmOn
     # the given id
     #
     def channel(id, opts={})
+      id = id.to_s
       return @channel[id] if @channel[id] && !opts[:json]
       json = get("channel/#{id}")
       if opts[:json]

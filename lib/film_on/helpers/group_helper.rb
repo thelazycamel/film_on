@@ -13,6 +13,7 @@ module FilmOn
     # find the full detail of any given group
     #
     def find_group(id)
+      id = id.to_s
       groups.select{|gr| gr.id == id}.first
     end
 

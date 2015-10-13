@@ -15,6 +15,11 @@ module FilmOn
     # FilmOn Api (http://www.filmon.com/page/api)
     # initialize the wrapper with your app_key and app_secret
     # for development purposes you can use "foo" and "bar"
+    # eg.
+    # film_on = FilmOn::Base.new("foo", "bar")
+    # film_on.channels => returns an array of channels
+    # film_on.groups => returns an array of channel groups
+    # film_on.channel(14) => returns information for channel with id 14
     #
     def initialize(app_key, app_secret)
       @app_key = app_key
