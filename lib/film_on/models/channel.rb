@@ -3,7 +3,8 @@ module FilmOn
   # FilmOn::Channel
   # Channel can have either a basic set of data or a more verbose set
   # depending on whether it is called as part of a channels list or
-  # as in individual call
+  # as in individual call from #channel, takes a raw hash and converts
+  # it into a nice ruby object
 
   class Channel
 

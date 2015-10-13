@@ -1,5 +1,8 @@
 module FilmOn
 
+  # Programme holds the detail of a TV programme, it takes a raw hash and
+  # converts it into a nice ruby object
+  #
   class Programme
 
     Image = Struct.new(:id, :type, :size, :width, :height, :url, :copyright)

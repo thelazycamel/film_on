@@ -1,5 +1,10 @@
 module FilmOn
 
+  # Group is a group of channels bundled together
+  # such as "Sports" or "UK Live TV"
+  # takes a raw hash and converts it into a nice ruby
+  # object
+
   class Group
 
     attr_reader :hash

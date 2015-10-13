@@ -12,6 +12,10 @@ module FilmOn
 
     attr_reader :app_key, :app_secret, :session_key
 
+    # FilmOn Api (http://www.filmon.com/page/api)
+    # initialize the wrapper with your app_key and app_secret
+    # for development purposes you can use "foo" and "bar"
+    #
     def initialize(app_key, app_secret)
       @app_key = app_key
       @app_secret = app_secret
@@ -19,6 +23,11 @@ module FilmOn
       init_request
     end
 
+    private
+
+    # Create the initial handshake to FilmOn
+    # and set the @session_key
+    #
     def init_request
       response = get("init")
       init_hash = JSON.parse(response)
@@ -26,8 +35,8 @@ module FilmOn
       self
     end
 
-    private
-
+    # Make a POST request to the api with the given service, query and protocol
+    #
     def post(service, query={}, protocol="http://")
       query["format"] = "json"
       query["session_key"] = @session_key unless service == "init"
@@ -36,10 +45,13 @@ module FilmOn
       if response && response.code == 200
         return response.body
       else
-        response.response
+        #TODO log error
+        nil
       end
     end
 
+    # Make a GET request to the api with the given service, query and protocol
+    #
     def get(service, query={}, protocol="http://")
       query["format"] = "json"
       query["session_key"] = @session_key unless service == "init"
@@ -48,7 +60,8 @@ module FilmOn
       if response && response.code == 200
         return response.body
       else
-        response.response
+        #TODO log error
+        nil
       end
     end
 
