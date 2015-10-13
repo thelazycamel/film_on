@@ -12,6 +12,8 @@ module FilmOn
 
     attr_reader :app_key, :app_secret, :session_key
 
+    class ApiError < StandardError; end
+
     # FilmOn Api (http://www.filmon.com/page/api)
     # initialize the wrapper with your app_key and app_secret
     # for development purposes you can use "foo" and "bar"
@@ -50,8 +52,7 @@ module FilmOn
       if response && response.code == 200
         return response.body
       else
-        #TODO log error
-        nil
+        raise ApiError
       end
     end
 
@@ -65,8 +66,7 @@ module FilmOn
       if response && response.code == 200
         return response.body
       else
-        #TODO log error
-        nil
+        raise ApiError
       end
     end
 

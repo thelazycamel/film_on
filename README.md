@@ -36,6 +36,7 @@ film_on = FilmOn::Base.new(app_key, app_secret)
 film_on.channels => returns list of all channels as ruby objects
 flim_on.groups => returns list of all groups as ruby objects
 film_on.channel(id) => returns info for given channel as a ruby object
+film_on.find_group(id) => returns the information for a given group id
 
 ## Development
 
