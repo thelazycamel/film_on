@@ -7,6 +7,7 @@ require "film_on/models/channel"
 require "film_on/models/group"
 require "film_on/models/programme"
 require "film_on/models/movie"
+require "film_on/models/genre"
 
 module FilmOn
 

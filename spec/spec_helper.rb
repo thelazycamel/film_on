@@ -7,3 +7,8 @@ require_relative "helpers/helper_methods"
 RSpec.configure do |c|
   c.include HelperMethods
 end
+
+# TODO specs
+# Genre service
+# Genre Model
+# Movie Model
