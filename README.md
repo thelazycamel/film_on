@@ -2,9 +2,8 @@
 
 A Ruby wrapper for the FilmOn API: http://www.filmon.com/page/api
 
-This is currently at version 0.0.1 and only handles channels, channel
-and groups methods
-
+This is currently at version < 0.1. It handles TV Streams: channels and groups methods
+and the Video On Demand: movie search  
 
 ## Installation
 
