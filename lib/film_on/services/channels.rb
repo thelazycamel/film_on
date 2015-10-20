@@ -2,7 +2,7 @@ module FilmOn
   module Services
     module Channels
 
-      # #channel will get the verbose details for a channel with
+      # channel: will get the verbose details for a channel with
       # the given id
       #
       def channel(id, opts={})
@@ -15,7 +15,7 @@ module FilmOn
         @channel[id] = convert_channel(json)
       end
 
-      # #channels will get the entire current list of channels for
+      # channels: will get the entire current list of channels for
       # FilmOn, each channels has a small amount of useful data,
       # refer to #channel for additional channel information.
       #
@@ -28,7 +28,7 @@ module FilmOn
         @channels = convert_channels(json)
       end
 
-      # #convert_channel takes the raw JSON
+      # convert_channel: takes the raw JSON
       # and coverts it into a nice ruby object
       # normal for use after storing the JSON in
       # a caching mechanism
@@ -38,7 +38,7 @@ module FilmOn
         FilmOn::Channel.new(hash)
       end
 
-      # #convert_channel takes the raw JSON
+      # convert_channels: takes the raw JSON
       # and coverts it into a nice ruby array of
       # objects
       #

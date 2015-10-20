@@ -7,12 +7,10 @@ module FilmOn
 
   class Group
 
-    attr_reader :hash
     attr_reader :group_id, :id, :title, :group, :original_name, :alias, :description
     attr_reader :weight, :logo_uri, :logo_148x148_uri, :logos, :channels, :channels_count
 
     def initialize(hash)
-      @hash = hash
       @group_id = hash["group_id"]
       @id = hash["id"]
       @title = hash["title"]

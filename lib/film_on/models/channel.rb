@@ -16,7 +16,6 @@ module FilmOn
     attr_reader :preload_message, :preload_timeout, :is_local, :preload_intro, :images, :schedule, :now_playing, :next_playing, :tvguide
 
     def initialize(hash)
-      @hash = hash
       @id = hash["id"]
       @title = hash["title"]
       @alias = hash["alias"]

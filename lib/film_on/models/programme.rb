@@ -7,12 +7,10 @@ module FilmOn
 
     Image = Struct.new(:id, :type, :size, :width, :height, :url, :copyright)
 
-    attr_reader :hash
     attr_reader :programme, :startdatetime, :enddatetime, :duration, :length, :programme_description, :programme_name, :allow_dvr
     attr_reader :allow_reminder, :channel_id, :images, :provider, :vendor_id, :series_number, :episode_number, :series_id, :is_series
 
     def initialize(hash)
-      @hash = hash
       @programme = hash["programme"]
       @startdatetime = hash["startdatetime"]
       @enddatetime = hash["enddatetime"]

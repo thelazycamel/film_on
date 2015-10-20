@@ -6,9 +6,10 @@ module FilmOn
 
     include Services::Channels
     include Services::Groups
+    include Services::VideoOnDemand
 
     TV_URI = "www.filmon.com/tv/api/"
-    VOD_URI = "www.filmon.com/api/vod"
+    VOD_URI = "www.filmon.com/api/vod/"
 
     attr_reader :app_key, :app_secret, :session_key
 
@@ -27,6 +28,8 @@ module FilmOn
       @app_key = app_key
       @app_secret = app_secret
       @channel = {}
+      @movie = {}
+      @vod_search = {}
       init_request
     end
 
@@ -47,8 +50,7 @@ module FilmOn
     def post(service, query={}, protocol="http://")
       query["format"] = "json"
       query["session_key"] = @session_key unless service == "init"
-      full_service_url = "#{protocol}#{TV_URI}#{service}"
-      response = HTTParty.post(full_service_url, {body: query, headers: {'Content-Type' => 'application/json'}})
+      response = HTTParty.post("#{protocol}#{TV_URI}#{service}", {body: query, headers: {'Content-Type' => 'application/json'}})
       if response && response.code == 200
         return response.body
       else
@@ -61,8 +63,18 @@ module FilmOn
     def get(service, query={}, protocol="http://")
       query["format"] = "json"
       query["session_key"] = @session_key unless service == "init"
-      full_service_url = "#{protocol}#{TV_URI}#{service}?#{query.map{|k,v| "#{k}=#{v}"}.join("&")}"
-      response = HTTParty.get(full_service_url)
+      query_string = query.map{|k,v| "#{k}=#{v}"}.join("&")
+      response = HTTParty.get("#{protocol}#{TV_URI}#{service}?#{query_string}")
+      if response && response.code == 200
+        return response.body
+      else
+        raise ApiError
+      end
+    end
+
+    def get_vod(service, query={}, protocol="http://")
+      query_string = query.map{|k,v| "#{k}=#{v}"}.join("&")
+      response = HTTParty.get("#{protocol}#{VOD_URI}#{service}?#{query_string}")
       if response && response.code == 200
         return response.body
       else

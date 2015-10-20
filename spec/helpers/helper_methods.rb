@@ -16,4 +16,12 @@ module HelperMethods
     File.read(File.dirname(__FILE__) + "/../fixtures/groups.json")
   end
 
+  def movie_response_json
+    File.read(File.dirname(__FILE__) + "/../fixtures/movie.json")
+  end
+
+  def movies_response_json
+    File.read(File.dirname(__FILE__) + "/../fixtures/movies.json")
+  end
+
 end
