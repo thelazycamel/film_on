@@ -30,7 +30,6 @@ Obtain your app_key and app_secret from FilmOn
 
 `app_key = "foo"`
 `app_secret = "bar"`
-
 `film_on = FilmOn::Base.new(app_key, app_secret)`
 
 ### TV Streaming examples
@@ -46,6 +45,7 @@ Obtain your app_key and app_secret from FilmOn
 ### Video On Demand examples
 
 `film_on.movies(genre: "horror")` => returns all movies within the horror genre
+
 `film_on.movie(id)` => returns information on the movie with the given id
 
 ## Development
