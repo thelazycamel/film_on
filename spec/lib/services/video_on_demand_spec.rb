@@ -37,7 +37,7 @@ describe FilmOn::Services::VideoOnDemand do
 
   end
 
-  context "#channel/#id" do
+  context "#movie?id=id" do
 
     before :each do
       stub_request(:get, "http://www.filmon.com/api/vod/movie?id=5315").with(:headers => {'Accept'=>'*/*'}).
