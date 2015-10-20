@@ -28,18 +28,25 @@ Refer to FilmOn Api (http://www.filmon.com/page/api):
 
 Obtain your app_key and app_secret from FilmOn 
 
-app_key = "foo"
-app_secret = "bar"
+`app_key = "foo"`
+`app_secret = "bar"`
 
-film_on = FilmOn::Base.new(app_key, app_secret)
+`film_on = FilmOn::Base.new(app_key, app_secret)`
 
-film_on.channels => returns list of all channels as ruby objects
+### TV Streaming examples
 
-flim_on.groups => returns list of all groups as ruby objects
+`film_on.channels` => returns list of all channels as ruby objects
 
-film_on.channel(id) => returns info for given channel as a ruby object
+`flim_on.groups` => returns list of all groups as ruby objects
 
-film_on.find_group(id) => returns the information for a given group id
+`film_on.channel(id)` => returns info for given channel as a ruby object
+
+`film_on.find_group(id)` => returns the information for a given group id
+
+### Video On Demand examples
+
+`film_on.movies(genre: "horror")` => returns all movies within the horror genre
+`film_on.movie(id)` => returns information on the movie with the given id
 
 ## Development
 
