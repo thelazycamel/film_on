@@ -4,11 +4,11 @@ module FilmOn
 
   class Base
 
-    include Services
-    include ChannelHelper
-    include GroupHelper
+    include Services::Channels
+    include Services::Groups
 
-    URI = "www.filmon.com/tv/api/"
+    TV_URI = "www.filmon.com/tv/api/"
+    VOD_URI = "www.filmon.com/api/vod"
 
     attr_reader :app_key, :app_secret, :session_key
 
@@ -47,7 +47,7 @@ module FilmOn
     def post(service, query={}, protocol="http://")
       query["format"] = "json"
       query["session_key"] = @session_key unless service == "init"
-      full_service_url = "#{protocol}#{URI}#{service}"
+      full_service_url = "#{protocol}#{TV_URI}#{service}"
       response = HTTParty.post(full_service_url, {body: query, headers: {'Content-Type' => 'application/json'}})
       if response && response.code == 200
         return response.body
@@ -61,7 +61,7 @@ module FilmOn
     def get(service, query={}, protocol="http://")
       query["format"] = "json"
       query["session_key"] = @session_key unless service == "init"
-      full_service_url = "#{protocol}#{URI}#{service}?#{query.map{|k,v| "#{k}=#{v}"}.join("&")}"
+      full_service_url = "#{protocol}#{TV_URI}#{service}?#{query.map{|k,v| "#{k}=#{v}"}.join("&")}"
       response = HTTParty.get(full_service_url)
       if response && response.code == 200
         return response.body
