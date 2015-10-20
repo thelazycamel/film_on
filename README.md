@@ -29,7 +29,9 @@ Refer to FilmOn Api (http://www.filmon.com/page/api):
 Obtain your app_key and app_secret from FilmOn 
 
 `app_key = "foo"`
+
 `app_secret = "bar"`
+
 `film_on = FilmOn::Base.new(app_key, app_secret)`
 
 ### TV Streaming examples
