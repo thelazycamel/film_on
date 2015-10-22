@@ -17,22 +17,30 @@ describe FilmOn::Services::VideoOnDemand do
     end
 
     it "should call the API Video on Demand search" do
-      expect(film_on.movies(genre: "horror")).to be_instance_of(Array)
+      expect(film_on.vod_search(genre: "horror").movies).to be_instance_of(Array)
     end
 
-    it "should return instances of FilmOn::Movie" do
-      expect(film_on.movies(genre: "horror").first).to be_instance_of(FilmOn::Movie)
+    it "should return instances of filmon::movie" do
+      expect(film_on.vod_search(genre: "horror").movies.first).to be_instance_of(FilmOn::Movie)
+    end
+
+    it "should return the number of movies returned" do
+      expect(film_on.vod_search(genre: "horror").total).to eq(25)
+    end
+
+    it "should return the total number of movies for the search" do
+      expect(film_on.vod_search(genre: "horror").total_found).to eq(352)
     end
 
     it "should not call the api on a second request" do
       expect(film_on).to receive(:get_vod).with("search", {genre: "horror"}) { movies_response_json }
-      film_on.movies(genre: "horror")
+      film_on.vod_search(genre: "horror")
       expect(film_on).to_not receive(:get_vod)
-      film_on.movies(genre: "horror")
+      film_on.vod_search(genre: "horror")
     end
 
     it "should return channels list as json when requested" do
-      expect(film_on.movies({genre: "horror"},{json: true})).to eq(movies_response_json)
+      expect(film_on.vod_search({genre: "horror"},{json: true})).to eq(movies_response_json)
     end
 
   end
