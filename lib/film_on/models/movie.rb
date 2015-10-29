@@ -10,10 +10,10 @@ module FilmOn
 
     Image = Struct.new(:type, :width, :height, :url)
 
-    attr_reader :id, :title, :slug, :description, :type_id, :series_number, :episodes_count, :vendor_id, :vendorka_id
-    attr_reader :content_host, :low_quality_file_id, :high_quality_file_id, :parent_id, :exists_on_edgecast
-    attr_reader :is_featured, :is_enabled, :deleted_at, :genres, :cast, :crew, :artwork, :poster, :georule, :type
-    attr_reader :streams, :content_blocked, :poster_small, :poster_medium, :poster_large
+    attr_reader :id, :title, :slug, :description, :type_id, :series_number, :episode_number, :episodes_count, :episodes
+    attr_reader :vendor_id, :vendorka_id, :content_host, :low_quality_file_id, :high_quality_file_id, :parent_id
+    attr_reader :exists_on_edgecast, :is_featured, :is_enabled, :deleted_at, :genres, :cast, :crew, :artwork, :poster
+    attr_reader :georule, :type, :streams, :content_blocked, :poster_small, :poster_medium, :poster_large
 
     def initialize(hash)
       @id = hash["id"]
